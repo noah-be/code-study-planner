@@ -146,6 +146,8 @@ const getAbbreviation = (name: string) => {
   if (name === "BSc SE") return StudyProgramAbbreviation.SE;
   if (name === "BA ID") return StudyProgramAbbreviation.ID;
   if (name === "BA PM") return StudyProgramAbbreviation.PM;
+  if (name === "BA DS") return StudyProgramAbbreviation.DS;
+  if (name === "BA BM") return StudyProgramAbbreviation.BM;
 
   throw new Error(
     "[getAbbreviation] failed to resolve study program abbreviation: " + name,
@@ -244,6 +246,10 @@ query {
   let savedCompulsoryElectivePairings: CompulsoryElectivePairing[] = [];
 
   for (const studyProgram of studyPrograms.studyPrograms) {
+    if (studyProgram.abbreviation.includes("V4")) {
+      continue;
+    }
+
     const abbreviation = getAbbreviation(studyProgram.abbreviation);
 
     const studyProgramEntity = await studyProgramRepository.save(

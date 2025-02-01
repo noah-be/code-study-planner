@@ -14,6 +14,8 @@ export enum StudyProgramAbbreviation {
   SE = "SE",
   ID = "ID",
   PM = "PM",
+  DS = "DS",
+  BM = "BM",
 }
 
 @Entity({ name: "study_programs" })
